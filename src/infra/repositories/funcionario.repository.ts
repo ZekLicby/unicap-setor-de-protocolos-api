@@ -9,23 +9,41 @@ class FuncionarioRepository implements IFuncionarioRepository {
     private readonly _funcionarioRepository: Repository<Funcionario>,
   ) {}
 
-  create(funcionario: Funcionario): Promise<Funcionario> {
-    throw new Error('Method not implemented.');
+  public async create(funcionario: Funcionario): Promise<Funcionario> {
+    const createdFuncionario = this._funcionarioRepository.create(funcionario);
+
+    return await this._funcionarioRepository.save(createdFuncionario);
   }
-  getAll() {
-    throw new Error('Method not implemented.');
+
+  public async getAll(): Promise<Funcionario[]> {
+    return await this._funcionarioRepository.find();
   }
-  getById(id: string): Promise<Funcionario> | undefined {
-    throw new Error('Method not implemented.');
+
+  public async getById(id: string): Promise<Funcionario> {
+    return await this._funcionarioRepository.findOne({ where: { id } });
   }
-  update(
+
+  public async update(
     id: string,
     funcionarioData: Funcionario,
-  ): Promise<Funcionario> | undefined {
-    throw new Error('Method not implemented.');
+  ): Promise<Funcionario> {
+    const existingFuncionario = await this.getById(id);
+
+    if (!existingFuncionario) {
+      throw new Error('Funcionáio não encontrado.');
+    }
+
+    this._funcionarioRepository.merge(existingFuncionario, funcionarioData);
+
+    return await this._funcionarioRepository.save(existingFuncionario);
   }
-  delete(id: string): Promise<void> {
-    throw new Error('Method not implemented.');
+
+  public async delete(id: string): Promise<void> {
+    const deletedFuncionario = await this._funcionarioRepository.delete(id);
+
+    if (deletedFuncionario.affected === 0) {
+      throw new Error('Funcionário não encontrado.');
+    }
   }
 }
 
