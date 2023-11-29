@@ -8,7 +8,9 @@ import FuncionarioDto from '../dtos/funcionarioDtos/funcionario.dto';
 class FuncionarioService implements IFuncionarioService {
   constructor(private readonly _funcionarioRepository: FuncionarioRepository) {}
 
-  createFuncionario(funcionarioDto: FuncionarioDto): Promise<Funcionario> {}
+  createFuncionario(funcionarioDto: FuncionarioDto): Promise<Funcionario> {
+    
+  }
 
   getAllFuncionarios(): Promise<Funcionario[]> {}
 
