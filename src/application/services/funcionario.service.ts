@@ -8,20 +8,30 @@ import FuncionarioDto from '../dtos/funcionarioDtos/funcionario.dto';
 class FuncionarioService implements IFuncionarioService {
   constructor(private readonly _funcionarioRepository: FuncionarioRepository) {}
 
-  createFuncionario(funcionarioDto: FuncionarioDto): Promise<Funcionario> {
-    
+  public async createFuncionario(
+    funcionarioDto: FuncionarioDto,
+  ): Promise<Funcionario> {
+    return await this._funcionarioRepository.create(funcionarioDto);
   }
 
-  getAllFuncionarios(): Promise<Funcionario[]> {}
+  public async getAllFuncionarios(): Promise<Funcionario[]> {
+    return await this._funcionarioRepository.getAll();
+  }
 
-  getFuncionarioById(id: string): Promise<Funcionario> {}
+  public async getFuncionarioById(id: string): Promise<Funcionario> {
+    return await this._funcionarioRepository.getById(id);
+  }
 
-  updateFuncionario(
+  public async updateFuncionario(
     id: string,
     funcionarioDto: FuncionarioDto,
-  ): Promise<Funcionario> {}
+  ): Promise<Funcionario> {
+    return await this._funcionarioRepository.update(id, funcionarioDto);
+  }
 
-  deleteFuncionario(id: string): Promise<void> {}
+  public async deleteFuncionario(id: string): Promise<void> {
+    return await this._funcionarioRepository.delete(id);
+  }
 }
 
 export default FuncionarioService;
