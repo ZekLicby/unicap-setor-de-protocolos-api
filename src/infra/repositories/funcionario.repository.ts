@@ -19,8 +19,8 @@ class FuncionarioRepository implements IFuncionarioRepository {
     return await this._funcionarioRepository.find();
   }
 
-  public async getById(id: string): Promise<Funcionario> {
-    return await this._funcionarioRepository.findOne({ where: { id } });
+  public async getById(id: string): Promise<Funcionario | null> {
+    return await this._funcionarioRepository.findOne({ where: { id } }, );
   }
 
   public async update(

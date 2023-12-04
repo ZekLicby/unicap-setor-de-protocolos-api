@@ -3,22 +3,28 @@ import { Funcionario } from 'src/domain/entities/funcionario.entity';
 import IFuncionarioService from 'src/domain/services/ifuncionario.service';
 import FuncionarioRepository from 'src/infra/repositories/funcionario.repository';
 import FuncionarioDto from '../dtos/funcionarioDtos/funcionario.dto';
+import FuncionarioMapper from '../mappers/funcionario.mapper';
 
 @Injectable()
 class FuncionarioService implements IFuncionarioService {
-  constructor(private readonly _funcionarioRepository: FuncionarioRepository) {}
+  constructor(
+    private readonly _funcionarioRepository: FuncionarioRepository,
+    private readonly _funcionarioMapper: FuncionarioMapper,
+  ) {}
 
   public async createFuncionario(
     funcionarioDto: FuncionarioDto,
   ): Promise<Funcionario> {
-    return await this._funcionarioRepository.create(funcionarioDto);
+    const funcionario = this._funcionarioMapper.dtoToEntity(funcionarioDto);
+
+    return await this._funcionarioRepository.create(funcionario);
   }
 
   public async getAllFuncionarios(): Promise<Funcionario[]> {
     return await this._funcionarioRepository.getAll();
   }
 
-  public async getFuncionarioById(id: string): Promise<Funcionario> {
+  public async getFuncionarioById(id: string): Promise<Funcionario | null> {
     return await this._funcionarioRepository.getById(id);
   }
 
@@ -26,7 +32,9 @@ class FuncionarioService implements IFuncionarioService {
     id: string,
     funcionarioDto: FuncionarioDto,
   ): Promise<Funcionario> {
-    return await this._funcionarioRepository.update(id, funcionarioDto);
+    const funcionario = this._funcionarioMapper.dtoToEntity(funcionarioDto);
+
+    return await this._funcionarioRepository.update(id, funcionario);
   }
 
   public async deleteFuncionario(id: string): Promise<void> {
