@@ -6,7 +6,7 @@ interface IFuncionarioService {
 
   getAllFuncionarios(): Promise<Array<Funcionario>>;
 
-  getFuncionarioById(id: string): Promise<Funcionario>;
+  getFuncionarioById(id: string): Promise<Funcionario | null> | undefined;
 
   updateFuncionario(
     id: string,
