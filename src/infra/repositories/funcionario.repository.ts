@@ -1,9 +1,13 @@
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Funcionario } from 'src/domain/entities/funcionario.entity';
 import IFuncionarioRepository from 'src/domain/repositories/ifuncionario.repository';
 import { Repository } from 'typeorm';
 
+@Injectable()
 class FuncionarioRepository implements IFuncionarioRepository {
+  funcionarios = [];
+
   constructor(
     @InjectRepository(Funcionario)
     private readonly _funcionarioRepository: Repository<Funcionario>,
@@ -20,7 +24,7 @@ class FuncionarioRepository implements IFuncionarioRepository {
   }
 
   public async getById(id: string): Promise<Funcionario | null> {
-    return await this._funcionarioRepository.findOne({ where: { id } }, );
+    return await this._funcionarioRepository.findOne({ where: { id } });
   }
 
   public async update(
