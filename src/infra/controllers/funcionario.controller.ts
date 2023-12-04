@@ -13,7 +13,7 @@ import FuncionarioDto from 'src/application/dtos/funcionarioDtos/funcionario.dto
 import { Funcionario } from 'src/domain/entities/funcionario.entity';
 import IFuncionarioService from 'src/domain/services/ifuncionario.service';
 
-@Controller('funcionario')
+@Controller('/funcionario')
 export class FuncionarioController {
   constructor(private readonly funcionarioService: IFuncionarioService) {}
 
