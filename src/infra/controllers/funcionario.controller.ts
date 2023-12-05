@@ -9,7 +9,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import FuncionarioDto from 'src/application/dtos/funcionarioDtos/funcionario.dto';
+import FuncionarioDto from 'src/application/dtos/funcionario.dto';
 import { Funcionario } from 'src/domain/entities/funcionario.entity';
 import IFuncionarioService from 'src/domain/services/ifuncionario.service';
 

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Funcionario } from 'src/domain/entities/funcionario.entity';
 import IFuncionarioService from 'src/domain/services/ifuncionario.service';
 import FuncionarioRepository from 'src/infra/repositories/funcionario.repository';
-import FuncionarioDto from '../dtos/funcionarioDtos/funcionario.dto';
+import FuncionarioDto from '../dtos/funcionario.dto';
 import FuncionarioMapper from '../mappers/funcionario.mapper';
 
 @Injectable()
