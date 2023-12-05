@@ -13,7 +13,7 @@ import RegistroPrimarioDto from 'src/application/dtos/registroPrimario.dto';
 import { RegistroPrimario } from 'src/domain/entities/registroPrimario.entity';
 import IRegistroPrimarioService from 'src/domain/services/iregristroPrimario.service';
 
-@Controller('registroPrimario')
+@Controller('registroPrimaria')
 export class RegistroPrimarioController {
   constructor(
     private readonly _registroPrimarioService: IRegistroPrimarioService,
@@ -57,8 +57,7 @@ export class RegistroPrimarioController {
   public async getRegistroById(
     @Param('id') id: string,
   ): Promise<RegistroPrimario> {
-    const registro =
-      await this._registroPrimarioService.getRegistroPrimarioById(id);
+    const registro = await this._registroPrimarioService.getRegistroPrimarioById(id);
 
     if (!registro) {
       throw new HttpException('Registro não encontrado', HttpStatus.NOT_FOUND);
