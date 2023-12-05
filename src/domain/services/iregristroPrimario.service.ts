@@ -10,7 +10,7 @@ interface IRegistroPrimarioService {
 
   getRegistroPrimarioById(
     id: string,
-  ): Promise<RegistroPrimario | null> | undefined;w
+  ): Promise<RegistroPrimario | null> | undefined;
 
   updateRegistroPrimario(
     id: string,

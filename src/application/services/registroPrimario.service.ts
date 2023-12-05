@@ -21,18 +21,29 @@ class RegistroPrimarioService implements IRegistroPrimarioService {
     return await this._registroPrimarioRepository.create(registroPrimario);
   }
 
-  public async getAllRegistrosPrimarios(): Promise<RegistroPrimario[]> {}
+  public async getAllRegistrosPrimarios(): Promise<RegistroPrimario[]> {
+    return await this._registroPrimarioRepository.getAll();
+  }
 
   public async getRegistroPrimarioById(
     id: string,
-  ): Promise<RegistroPrimario | null> | undefined {}
+  ): Promise<RegistroPrimario | null> | undefined {
+    return await this._registroPrimarioRepository.getById(id);
+  }
 
   public async updateRegistroPrimario(
     id: string,
     registroPrimarioDto: RegistroPrimarioDto,
-  ): Promise<RegistroPrimario> {}
+  ): Promise<RegistroPrimario> {
+    const registro =
+      this._registroPrimarioMapper.dtoToEntity(registroPrimarioDto);
 
-  public async deleteRegistroPrimario(id: string): Promise<void> {}
+    return await this._registroPrimarioRepository.update(id, registro);
+  }
+
+  public async deleteRegistroPrimario(id: string): Promise<void> {
+    return this._registroPrimarioRepository.delete(id);
+  }
 }
 
 export default RegistroPrimarioService;
