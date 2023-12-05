@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import IMapper from './ientity.mapper';
 import { Funcionario } from 'src/domain/entities/funcionario.entity';
-import FuncionarioDto from '../dtos/funcionarioDtos/funcionario.dto';
+import FuncionarioDto from '../dtos/funcionario.dto';
 
 @Injectable()
 class FuncionarioMapper implements IMapper<Funcionario, FuncionarioDto> {

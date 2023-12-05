@@ -1,10 +1,10 @@
-import FuncionarioDto from 'src/application/dtos/funcionarioDtos/funcionario.dto';
+import FuncionarioDto from 'src/application/dtos/funcionario.dto';
 import { Funcionario } from '../entities/funcionario.entity';
 
 interface IFuncionarioService {
   createFuncionario(funcionarioDto: FuncionarioDto): Promise<Funcionario>;
 
-  getAllFuncionarios(): Promise<Array<Funcionario>>;
+  getAllFuncionarios(): Promise<Funcionario[]>;
 
   getFuncionarioById(id: string): Promise<Funcionario | null> | undefined;
 
