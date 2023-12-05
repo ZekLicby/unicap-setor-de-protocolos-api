@@ -1,3 +1,5 @@
+import { RegistroSecundario } from 'src/domain/entities/registroSecundario.entity';
+
 class RegistroPrimarioDto {
   public id: string;
   public RA: string;
@@ -6,7 +8,7 @@ class RegistroPrimarioDto {
   public fone: string;
   public orgao: string;
   public notas: string;
-  //public registroSecundario: RegistroSecundario;
+  public registroSecundario: RegistroSecundario;
 }
 
 export default RegistroPrimarioDto;
