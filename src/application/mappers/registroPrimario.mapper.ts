@@ -20,6 +20,7 @@ class RegistroPrimarioMapper
 
     return dto;
   }
+
   dtoToEntity(dto: RegistroPrimarioDto): RegistroPrimario {
     const entity = new RegistroPrimario();
 

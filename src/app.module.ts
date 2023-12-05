@@ -8,7 +8,7 @@ import { FuncionarioModule } from './infra/modules/funcionario.module';
     FuncionarioModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: process.env.DB_URL,
+      url: process.env.DATABASE_URL,
       synchronize: true,
       logging: true,
       autoLoadEntities: true,

@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import IRegistroPrimarioService from 'src/domain/services/iregristroPrimario.service';
 import RegistroPrimarioDto from '../dtos/registroPrimario.dto';
-import RegistroPrimario from '../mappers/registroPrimario.mapper';
 import RegistroPrimarioRepository from 'src/infra/repositories/registroPrimario.repository';
 import RegistroPrimarioMapper from '../mappers/registroPrimario.mapper';
+import IRegistroPrimarioService from 'src/domain/services/iregristroPrimario.service';
+import { RegistroPrimario } from 'src/domain/entities/registroPrimario.entity';
 
 @Injectable()
 class RegistroPrimarioService implements IRegistroPrimarioService {
@@ -27,7 +27,7 @@ class RegistroPrimarioService implements IRegistroPrimarioService {
 
   public async getRegistroPrimarioById(
     id: string,
-  ): Promise<RegistroPrimario | null> | undefined {
+  ): Promise<RegistroPrimario | null> {
     return await this._registroPrimarioRepository.getById(id);
   }
 
