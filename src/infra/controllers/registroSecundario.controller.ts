@@ -9,23 +9,23 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import RegistroPrimarioDto from 'src/application/dtos/registroPrimario.dto';
-import { RegistroPrimario } from 'src/domain/entities/registroPrimario.entity';
-import IRegistroPrimarioService from 'src/domain/services/iregristroPrimario.service';
+import RegistroSecundarioDto from 'src/application/dtos/registroSecundario.dto';
+import { RegistroSecundario } from 'src/domain/entities/registroSecundario.entity';
+import IRegistroSecundarioService from 'src/domain/services/iregristroSecundario.service';
 
-@Controller('registroPrimario')
-export class RegistroPrimarioController {
+@Controller('registroSecundario')
+export class RegistroSecundarioController {
   constructor(
-    private readonly _registroPrimarioService: IRegistroPrimarioService,
+    private readonly _registroSecundarioService: IRegistroSecundarioService,
   ) {}
 
   @Post()
-  public async createRegistroPrimario(
-    @Body() fichaPrimariaData: RegistroPrimarioDto,
-  ): Promise<RegistroPrimario> {
+  public async createRegistroSecundario(
+    @Body() fichaPrimariaData: RegistroSecundarioDto,
+  ): Promise<RegistroSecundario> {
     try {
       const createdFichaPrimaria =
-        await this._registroPrimarioService.createRegistroPrimario(
+        await this._registroSecundarioService.createRegistroSecundario(
           fichaPrimariaData,
         );
 
@@ -39,10 +39,10 @@ export class RegistroPrimarioController {
   }
 
   @Get()
-  public async getAllRegistrosPrimarios(): Promise<RegistroPrimario[]> {
+  public async getAllRegistrosSecundarios(): Promise<RegistroSecundario[]> {
     try {
       const registros =
-        await this._registroPrimarioService.getAllRegistrosPrimarios();
+        await this._registroSecundarioService.getAllRegistrosSecundarios();
 
       return registros;
     } catch (error) {
@@ -56,9 +56,9 @@ export class RegistroPrimarioController {
   @Get(':id')
   public async getRegistroById(
     @Param('id') id: string,
-  ): Promise<RegistroPrimario> {
+  ): Promise<RegistroSecundario> {
     const registro =
-      await this._registroPrimarioService.getRegistroPrimarioById(id);
+      await this._registroSecundarioService.getRegistroSecundarioById(id);
 
     if (!registro) {
       throw new HttpException('Registro não encontrado', HttpStatus.NOT_FOUND);
@@ -68,15 +68,15 @@ export class RegistroPrimarioController {
   }
 
   @Put(':id')
-  public async updateRegistroPrimario(
+  public async updateRegistroSecundario(
     @Param('id') id: string,
-    @Body() registroPrimarioData: RegistroPrimarioDto,
-  ): Promise<RegistroPrimario> {
+    @Body() registroSecundarioData: RegistroSecundarioDto,
+  ): Promise<RegistroSecundario> {
     try {
       const updatedRegistro =
-        await this._registroPrimarioService.updateRegistroPrimario(
+        await this._registroSecundarioService.updateRegistroSecundario(
           id,
-          registroPrimarioData,
+          registroSecundarioData,
         );
 
       return updatedRegistro;
@@ -89,10 +89,12 @@ export class RegistroPrimarioController {
   }
 
   @Delete(':id')
-  public async deleteRegistroPrimario(@Param('id') id: string): Promise<void> {
+  public async deleteRegistroSecundario(
+    @Param('id') id: string,
+  ): Promise<void> {
     try {
       const deletedRegistro =
-        await this._registroPrimarioService.deleteRegistroPrimario(id);
+        await this._registroSecundarioService.deleteRegistroSecundario(id);
     } catch (error) {
       throw new HttpException(
         'Registro não pôde ser deletado',
