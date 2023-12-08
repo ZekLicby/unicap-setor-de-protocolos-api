@@ -1,5 +1,5 @@
 import FuncionarioDto from 'src/application/dtos/funcionario.dto';
-import { Funcionario } from '../entities/funcionario.entity';
+import Funcionario from '../entities/funcionario.entity';
 
 interface IFuncionarioService {
   createFuncionario(funcionarioDto: FuncionarioDto): Promise<Funcionario>;

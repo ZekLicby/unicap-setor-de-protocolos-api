@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import IMapper from './ientity.mapper';
-import { Funcionario } from 'src/domain/entities/funcionario.entity';
+import Funcionario from 'src/domain/entities/funcionario.entity';
 import FuncionarioDto from '../dtos/funcionario.dto';
 
 @Injectable()

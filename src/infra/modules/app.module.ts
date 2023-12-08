@@ -1,7 +1,9 @@
-import { Module } from '@nestjs/common';
+import * as dotenv from 'dotenv';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Funcionario } from './domain/entities/funcionario.entity';
-import { FuncionarioModule } from './infra/modules/funcionario.module';
+import Funcionario from '../../domain/entities/funcionario.entity';
+import { FuncionarioModule } from './funcionario.module';
+import { Module } from '@nestjs/common';
+dotenv.config();
 
 @Module({
   imports: [

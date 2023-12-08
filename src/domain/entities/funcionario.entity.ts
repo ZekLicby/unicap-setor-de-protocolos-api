@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 @Entity({ name: 'Funcionarios' })
-export class Funcionario {
+class Funcionario {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
@@ -42,3 +42,5 @@ export class Funcionario {
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Date;
 }
+
+export default Funcionario;
