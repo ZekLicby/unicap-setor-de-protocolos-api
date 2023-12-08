@@ -10,12 +10,13 @@ import {
   Put,
 } from '@nestjs/common';
 import FuncionarioDto from 'src/application/dtos/funcionario.dto';
-import { Funcionario } from 'src/domain/entities/funcionario.entity';
+import FuncionarioService from 'src/application/services/funcionario.service';
+import Funcionario from 'src/domain/entities/funcionario.entity';
 import IFuncionarioService from 'src/domain/services/ifuncionario.service';
 
-@Controller('/funcionario')
+@Controller('funcionario')
 export class FuncionarioController {
-  constructor(private readonly funcionarioService: IFuncionarioService) {}
+  constructor(private readonly funcionarioService: FuncionarioService) {}
 
   @Post()
   public async createFuncionario(
@@ -85,8 +86,7 @@ export class FuncionarioController {
   @Delete(':id')
   public async deleteFuncionario(@Param('id') id: string): Promise<void> {
     try {
-      const deletedFuncionario =
-        await this.funcionarioService.deleteFuncionario(id);
+      await this.funcionarioService.deleteFuncionario(id);
     } catch (error) {
       throw new HttpException(
         'Usuário não pôde ser deletado',
