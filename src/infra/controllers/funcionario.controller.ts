@@ -12,7 +12,6 @@ import {
 import FuncionarioDto from 'src/application/dtos/funcionario.dto';
 import FuncionarioService from 'src/application/services/funcionario.service';
 import Funcionario from 'src/domain/entities/funcionario.entity';
-import IFuncionarioService from 'src/domain/services/ifuncionario.service';
 
 @Controller('funcionario')
 export class FuncionarioController {
@@ -52,7 +51,7 @@ export class FuncionarioController {
   @Get(':id')
   public async getFuncionarioById(
     @Param('id') id: string,
-  ): Promise<Funcionario> {
+  ): Promise<Funcionario | null> {
     const funcionario = await this.funcionarioService.getFuncionarioById(id);
 
     if (!funcionario) {

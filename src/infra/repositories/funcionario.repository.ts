@@ -6,8 +6,6 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 class FuncionarioRepository implements IFuncionarioRepository {
-  funcionarios = [];
-
   constructor(
     @InjectRepository(Funcionario)
     private readonly _funcionarioRepository: Repository<Funcionario>,

@@ -9,7 +9,7 @@ import { FuncionarioController } from '../controllers/funcionario.controller';
 @Module({
   imports: [TypeOrmModule.forFeature([Funcionario])],
   controllers: [FuncionarioController],
-  providers: [FuncionarioRepository, FuncionarioMapper, FuncionarioService]
-  //exports: [FuncionarioService],
+  providers: [FuncionarioRepository, FuncionarioMapper, FuncionarioService],
+  exports: [FuncionarioService],
 })
 export class FuncionarioModule {}

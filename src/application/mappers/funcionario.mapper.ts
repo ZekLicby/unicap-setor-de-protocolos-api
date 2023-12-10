@@ -12,7 +12,6 @@ class FuncionarioMapper implements IMapper<Funcionario, FuncionarioDto> {
     dto.dataNascimento = entity.dataNascimento;
     dto.nome = entity.nome;
     dto.matricula = entity.matricula;
-    dto.id = entity.id;
 
     return dto;
   }
@@ -24,10 +23,6 @@ class FuncionarioMapper implements IMapper<Funcionario, FuncionarioDto> {
     entity.dataNascimento = dto.dataNascimento;
     entity.nome = dto.nome;
     entity.matricula = dto.matricula;
-    entity.id = dto.id;
-    entity.createdAt = new Date();
-    entity.updatedAt = new Date();
-    entity.deletedAt = new Date();
 
     return entity;
   }

@@ -16,6 +16,7 @@ class FuncionarioService implements IFuncionarioService {
     funcionarioDto: FuncionarioDto,
   ): Promise<Funcionario> {
     const funcionario = this._funcionarioMapper.dtoToEntity(funcionarioDto);
+    funcionario.setSenhaHash = funcionarioDto.senhaHash;
 
     return await this._funcionarioRepository.create(funcionario);
   }
