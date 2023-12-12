@@ -21,8 +21,6 @@ class RegistroPrimarioDto {
 
   @IsString()
   public notas: string;
-
-  //public registroSecundario: RegistroSecundario;
 }
 
 export default RegistroPrimarioDto;
