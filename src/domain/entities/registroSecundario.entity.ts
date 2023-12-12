@@ -3,9 +3,11 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  ManyToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import Funcionario from './funcionario.entity';
 
 @Entity({ name: 'FichasSecundarias' })
 export class RegistroSecundario {
@@ -36,7 +38,8 @@ export class RegistroSecundario {
   @Column({ type: 'text' })
   public orgao: string;
 
-  //public registroPrimario: RegistroPrimario;
+  @ManyToOne(() => Funcionario, (funcionario) => funcionario.registroSecundario)
+  public funcionario: Funcionario;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

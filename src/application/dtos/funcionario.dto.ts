@@ -1,4 +1,4 @@
-import { IsDate, IsString } from 'class-validator';
+import { IsDate, IsEmail, IsString } from 'class-validator';
 
 class FuncionarioDto {
   @IsString()
@@ -9,6 +9,9 @@ class FuncionarioDto {
 
   @IsString()
   public cargo: string;
+
+  @IsEmail()
+  public email: string;
 
   @IsString()
   public setor: string;

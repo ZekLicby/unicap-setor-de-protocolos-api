@@ -9,6 +9,7 @@ class FuncionarioMapper implements IMapper<Funcionario, FuncionarioDto> {
     const dto = new FuncionarioDto();
 
     dto.cargo = entity.cargo;
+    dto.email = entity.email;
     dto.setor = entity.setor;
     dto.dataNascimento = entity.dataNascimento;
     dto.nome = entity.nome;
@@ -21,6 +22,7 @@ class FuncionarioMapper implements IMapper<Funcionario, FuncionarioDto> {
     const entity = new Funcionario();
 
     entity.cargo = dto.cargo;
+    entity.email = dto.email;
     entity.setor = dto.setor;
     entity.dataNascimento = dto.dataNascimento;
     entity.nome = dto.nome;

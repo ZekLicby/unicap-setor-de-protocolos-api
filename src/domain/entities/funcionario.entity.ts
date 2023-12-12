@@ -22,6 +22,9 @@ class Funcionario {
   public cargo: string;
 
   @Column({ type: 'text' })
+  public email: string;
+
+  @Column({ type: 'text' })
   public setor: string;
 
   @Column({ type: 'date' })
@@ -39,10 +42,13 @@ class Funcionario {
     this.senhaHash = value;
   }
 
-  @OneToMany()
+  @OneToMany(
+    () => RegistroPrimario,
+    (registroPrimario) => registroPrimario.funcionario,
+  )
   public registroPrimario: RegistroPrimario;
 
-  @OneToMany()
+  @OneToMany(() => RegistroSecundario, (registroSecundario) => registroSecundario.funcionario)
   public registroSecundario: RegistroSecundario;
 
   @CreateDateColumn({ name: 'created_at' })
