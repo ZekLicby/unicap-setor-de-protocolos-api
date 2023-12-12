@@ -5,7 +5,10 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { RegistroPrimario } from './registroPrimario.entity';
+import { RegistroSecundario } from './registroSecundario.entity';
 
 @Entity({ name: 'Funcionarios' })
 class Funcionario {
@@ -17,6 +20,9 @@ class Funcionario {
 
   @Column({ type: 'text' })
   public cargo: string;
+
+  @Column({ type: 'text' })
+  public setor: string;
 
   @Column({ type: 'date' })
   public dataNascimento: Date;
@@ -32,6 +38,12 @@ class Funcionario {
   public set setSenhaHash(value: string) {
     this.senhaHash = value;
   }
+
+  @OneToMany()
+  public registroPrimario: RegistroPrimario;
+
+  @OneToMany()
+  public registroSecundario: RegistroSecundario;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
