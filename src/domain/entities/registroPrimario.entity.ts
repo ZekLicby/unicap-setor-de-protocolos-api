@@ -14,22 +14,22 @@ export class RegistroPrimario {
   @PrimaryColumn('uuid')
   public id: string;
 
-  @Column({ type: 'text', length: 50, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public RA: string;
 
-  @Column({ type: 'text', length: 50, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public curso: string;
 
   @Column({ type: 'date', nullable: false })
   public encaminhado: Date;
 
-  @Column({ type: 'text', length: 20, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public fone: string;
 
-  @Column({ type: 'text', length: 20, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public orgao: string;
 
-  @Column({ type: 'text', length: 255, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public notas: string;
 
   @ManyToOne(() => Funcionario, (funcionario) => funcionario.registroPrimario)

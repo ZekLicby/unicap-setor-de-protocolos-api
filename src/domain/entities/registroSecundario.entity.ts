@@ -14,22 +14,22 @@ export class RegistroSecundario {
   @PrimaryColumn('uuid')
   public id: string;
 
-  @Column({ type: 'text', length: 50, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public tipoDoc: string;
 
-  @Column({ type: 'text', length: 250, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public notas: string;
 
-  @Column({ type: 'text', length: 50, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public assuntos: string;
 
-  @Column({ type: 'text', length: 50, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public registroPor: string;
 
-  @Column({ type: 'text', length: 50, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public RA: string;
 
-  @Column({ type: 'text', length: 50, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public curso: string;
 
   @Column({ type: 'date' })

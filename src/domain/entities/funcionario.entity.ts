@@ -15,25 +15,25 @@ class Funcionario {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
-  @Column({ type: 'text', length: 50, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public nome: string;
 
-  @Column({ type: 'text', length: 20, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public cargo: string;
 
-  @Column({ type: 'text', length: 255, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public email: string;
 
-  @Column({ type: 'text', length: 20, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public setor: string;
 
   @Column({ type: 'date', nullable: false })
   public dataNascimento: Date;
 
-  @Column({ type: 'text', length: 50, nullable: false })
+  @Column({ type: 'text', nullable: false })
   public matricula: string;
 
-  @Column({ type: 'text', length: 100, nullable: false })
+  @Column({ type: 'text', nullable: false })
   private senhaHash: string;
   public get getSenhaHash(): string {
     return this.senhaHash;
