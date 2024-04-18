@@ -15,4 +15,4 @@ import RegistroSecundarioService from 'src/application/services/registroSecundar
     RegistroSecundarioService,
   ],
 })
-export class RegistroPrimarioModule {}
+export class RegistroSecundarioModule {}

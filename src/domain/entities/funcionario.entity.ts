@@ -5,26 +5,35 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { RegistroPrimario } from './registroPrimario.entity';
+import { RegistroSecundario } from './registroSecundario.entity';
 
 @Entity({ name: 'Funcionarios' })
 class Funcionario {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', length: 50, nullable: false })
   public nome: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', length: 20, nullable: false })
   public cargo: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'text', length: 255, nullable: false })
+  public email: string;
+
+  @Column({ type: 'text', length: 20, nullable: false })
+  public setor: string;
+
+  @Column({ type: 'date', nullable: false })
   public dataNascimento: Date;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', length: 50, nullable: false })
   public matricula: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', length: 100, nullable: false })
   private senhaHash: string;
   public get getSenhaHash(): string {
     return this.senhaHash;
@@ -32,6 +41,18 @@ class Funcionario {
   public set setSenhaHash(value: string) {
     this.senhaHash = value;
   }
+
+  @OneToMany(
+    () => RegistroPrimario,
+    (registroPrimario) => registroPrimario.funcionario,
+  )
+  public registroPrimario: RegistroPrimario;
+
+  @OneToMany(
+    () => RegistroSecundario,
+    (registroSecundario) => registroSecundario.funcionario,
+  )
+  public registroSecundario: RegistroSecundario;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

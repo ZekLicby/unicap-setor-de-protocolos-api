@@ -10,13 +10,13 @@ import {
   Put,
 } from '@nestjs/common';
 import RegistroPrimarioDto from 'src/application/dtos/registroPrimario.dto';
+import RegistroPrimarioService from 'src/application/services/registroPrimario.service';
 import { RegistroPrimario } from 'src/domain/entities/registroPrimario.entity';
-import IRegistroPrimarioService from 'src/domain/services/iregristroPrimario.service';
 
 @Controller('registroPrimaria')
 export class RegistroPrimarioController {
   constructor(
-    private readonly _registroPrimarioService: IRegistroPrimarioService,
+    private readonly _registroPrimarioService: RegistroPrimarioService,
   ) {}
 
   @Post()

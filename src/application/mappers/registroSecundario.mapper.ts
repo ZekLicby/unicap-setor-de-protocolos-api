@@ -29,7 +29,6 @@ class RegistroSecundarioMapper
     entity.RA = dto.RA;
     entity.curso = dto.curso;
     entity.encaminhado = dto.encaminhado;
-    entity.id = dto.id;
     entity.notas = dto.notas;
     entity.orgao = dto.orgao;
     entity.assuntos = dto.assuntos;
@@ -37,7 +36,6 @@ class RegistroSecundarioMapper
     entity.tipoDoc = dto.tipoDoc;
     entity.createdAt = new Date();
     entity.updatedAt = new Date();
-    entity.deletedAt = new Date();
 
     return entity;
   }

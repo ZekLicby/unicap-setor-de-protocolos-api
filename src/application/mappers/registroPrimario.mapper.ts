@@ -28,12 +28,9 @@ class RegistroPrimarioMapper
     entity.curso = dto.curso;
     entity.encaminhado = dto.encaminhado;
     entity.fone = dto.fone;
-    entity.id = dto.id;
-    entity.notas = dto.notas;
     entity.orgao = dto.orgao;
     entity.createdAt = new Date();
     entity.updatedAt = new Date();
-    entity.deletedAt = new Date();
 
     return entity;
   }
