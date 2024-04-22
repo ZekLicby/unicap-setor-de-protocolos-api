@@ -4,14 +4,14 @@ import {
   DeleteDateColumn,
   Entity,
   ManyToOne,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import Funcionario from './funcionario.entity';
 
 @Entity({ name: 'FichasPrimarias' })
 export class RegistroPrimario {
-  @PrimaryColumn('uuid')
+  @PrimaryGeneratedColumn('uuid')
   public id: string;
 
   @Column({ type: 'text', nullable: false })

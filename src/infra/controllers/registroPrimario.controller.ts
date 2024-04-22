@@ -57,7 +57,8 @@ export class RegistroPrimarioController {
   public async getRegistroById(
     @Param('id') id: string,
   ): Promise<RegistroPrimario> {
-    const registro = await this._registroPrimarioService.getRegistroPrimarioById(id);
+    const registro =
+      await this._registroPrimarioService.getRegistroPrimarioById(id);
 
     if (!registro) {
       throw new HttpException('Registro não encontrado', HttpStatus.NOT_FOUND);
