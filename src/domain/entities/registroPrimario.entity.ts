@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -11,7 +12,7 @@ import Funcionario from './funcionario.entity';
 
 @Entity({ name: 'FichasPrimarias' })
 export class RegistroPrimario {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   public id: string;
 
   @Column({ type: 'text', nullable: false })
@@ -32,7 +33,10 @@ export class RegistroPrimario {
   @Column({ type: 'text', nullable: false })
   public notas: string;
 
-  @ManyToOne(() => Funcionario, (funcionario) => funcionario.registroPrimario)
+  @ManyToOne(() => Funcionario, (funcionario) => funcionario.registroPrimario, {
+    onDelete: 'SET NULL',
+  })
+  @JoinColumn()
   public funcionario: Funcionario;
 
   @CreateDateColumn({ name: 'created_at' })

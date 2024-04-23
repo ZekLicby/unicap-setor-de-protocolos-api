@@ -18,11 +18,16 @@ class FuncionarioRepository implements IFuncionarioRepository {
   }
 
   public async getAll(): Promise<Funcionario[]> {
-    return await this._funcionarioRepository.find();
+    return await this._funcionarioRepository.find({
+      relations: ['registroPrimario'],
+    });
   }
 
   public async getById(id: string): Promise<Funcionario | null> {
-    return await this._funcionarioRepository.findOne({ where: { id } });
+    return await this._funcionarioRepository.findOne({
+      where: { id },
+      relations: ['registroPrimario'],
+    });
   }
 
   public async update(

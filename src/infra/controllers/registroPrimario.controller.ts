@@ -13,7 +13,7 @@ import RegistroPrimarioDto from 'src/application/dtos/registroPrimario.dto';
 import RegistroPrimarioService from 'src/application/services/registroPrimario.service';
 import { RegistroPrimario } from 'src/domain/entities/registroPrimario.entity';
 
-@Controller('registroPrimaria')
+@Controller('registroPrimario')
 export class RegistroPrimarioController {
   constructor(
     private readonly _registroPrimarioService: RegistroPrimarioService,

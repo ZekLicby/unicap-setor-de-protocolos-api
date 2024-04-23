@@ -19,11 +19,16 @@ class RegistroPrimarioRepository implements IRegistroPrimarioRepository {
   }
 
   public async getAll() {
-    return await this._registroPrimarioRepository.find();
+    return await this._registroPrimarioRepository.find({
+      relations: ['funcionario'],
+    });
   }
 
   public async getById(id: string): Promise<RegistroPrimario | null> {
-    return await this._registroPrimarioRepository.findOne({ where: { id } });
+    return await this._registroPrimarioRepository.findOne({
+      where: { id },
+      relations: ['funcionario'],
+    });
   }
 
   public async update(

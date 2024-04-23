@@ -38,7 +38,11 @@ export class RegistroSecundario {
   @Column({ type: 'text' })
   public orgao: string;
 
-  @ManyToOne(() => Funcionario, (funcionario) => funcionario.registroSecundario)
+  @ManyToOne(
+    () => Funcionario,
+    (funcionario) => funcionario.registroSecundario,
+    { onDelete: 'SET NULL' },
+  )
   public funcionario: Funcionario;
 
   @CreateDateColumn({ name: 'created_at' })

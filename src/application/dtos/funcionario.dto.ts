@@ -1,4 +1,6 @@
 import { IsDate, IsEmail, IsString } from 'class-validator';
+import { RegistroPrimario } from 'src/domain/entities/registroPrimario.entity';
+import RegistroPrimarioDto from './registroPrimario.dto';
 
 class FuncionarioDto {
   @IsString()
@@ -24,6 +26,8 @@ class FuncionarioDto {
 
   @IsString()
   public senhaHash: string;
+
+  public registroPrimario: RegistroPrimarioDto | null | undefined;
 }
 
 export default FuncionarioDto;
