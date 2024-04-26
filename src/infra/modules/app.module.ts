@@ -1,7 +1,6 @@
 import * as dotenv from 'dotenv';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import Funcionario from '../../domain/entities/funcionario.entity';
-import { FuncionarioModule } from './funcionario.module';
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from 'src/database/database.module';
 import { RegistroPrimarioModule } from './registroPrimario.module';
@@ -13,7 +12,6 @@ dotenv.config();
 
 @Module({
   imports: [
-    FuncionarioModule,
     DatabaseModule,
     RegistroPrimarioModule,
     RegistroSecundarioModule,

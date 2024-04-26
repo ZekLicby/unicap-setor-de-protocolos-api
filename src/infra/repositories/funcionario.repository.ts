@@ -55,7 +55,7 @@ class FuncionarioRepository implements IFuncionarioRepository {
 
   async findOne(email: string): Promise<Funcionario | null> {
     return await this._funcionarioRepository.findOne({
-      where: { email },
+      where: { email: email },
     });
   }
 }

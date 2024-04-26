@@ -15,11 +15,16 @@ import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
 import FuncionarioDto from 'src/application/dtos/funcionario.dto';
 import FuncionarioService from 'src/application/services/funcionario.service';
+import { AuthService } from 'src/auth/auth.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import Funcionario from 'src/domain/entities/funcionario.entity';
 
 @Controller('funcionario')
 export class FuncionarioController {
-  constructor(private readonly funcionarioService: FuncionarioService) {}
+  constructor(
+    private readonly funcionarioService: FuncionarioService,
+    private authService: AuthService,
+  ) {}
 
   @Post()
   public async createFuncionario(
@@ -37,7 +42,7 @@ export class FuncionarioController {
       );
     }
   }
-
+  @UseGuards(JwtAuthGuard)
   @Get()
   public async getAllFuncionarios(): Promise<Funcionario[]> {
     try {
@@ -51,7 +56,7 @@ export class FuncionarioController {
       );
     }
   }
-
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   public async getFuncionarioById(
     @Param('id') id: string,
@@ -67,7 +72,7 @@ export class FuncionarioController {
 
     return funcionario;
   }
-
+  @UseGuards(JwtAuthGuard)
   @Put(':id')
   public async updateFuncionario(
     @Param('id') id: string,
@@ -85,7 +90,7 @@ export class FuncionarioController {
       );
     }
   }
-
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   public async deleteFuncionario(@Param('id') id: string): Promise<void> {
     try {
@@ -101,6 +106,6 @@ export class FuncionarioController {
   @UseGuards(AuthGuard('local'))
   @Post('login')
   async login(@Req() req: Request) {
-    return req.user;
+    return this.authService.login(req.user);
   }
 }
