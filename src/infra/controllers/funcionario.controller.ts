@@ -8,7 +8,11 @@ import {
   Param,
   Post,
   Put,
+  Req,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { Request } from 'express';
 import FuncionarioDto from 'src/application/dtos/funcionario.dto';
 import FuncionarioService from 'src/application/services/funcionario.service';
 import Funcionario from 'src/domain/entities/funcionario.entity';
@@ -92,5 +96,11 @@ export class FuncionarioController {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
+  }
+
+  @UseGuards(AuthGuard('local'))
+  @Post('login')
+  async login(@Req() req: Request) {
+    return req.user;
   }
 }
