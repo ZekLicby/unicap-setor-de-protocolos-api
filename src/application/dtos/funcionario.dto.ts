@@ -1,5 +1,4 @@
 import { IsDate, IsEmail, IsString } from 'class-validator';
-import { RegistroPrimario } from 'src/domain/entities/registroPrimario.entity';
 import RegistroPrimarioDto from './registroPrimario.dto';
 
 class FuncionarioDto {

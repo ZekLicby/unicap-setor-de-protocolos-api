@@ -34,7 +34,7 @@ class Funcionario {
   @Column({ type: 'text', nullable: false })
   public matricula: string;
 
-  @Column({ type: 'text', nullable: false })
+  @Column({ type: 'text', nullable: false, select: false })
   private senhaHash: string;
   public get getSenhaHash(): string {
     return this.senhaHash;
@@ -56,13 +56,13 @@ class Funcionario {
   )
   public registroSecundario: RegistroSecundario[];
 
-  @CreateDateColumn({ name: 'created_at' })
+  @CreateDateColumn({ name: 'created_at', select: false })
   createdAt: Date;
 
-  @UpdateDateColumn({ name: 'updated_at' })
+  @UpdateDateColumn({ name: 'updated_at', select: false })
   updatedAt: Date;
 
-  @DeleteDateColumn({ name: 'deleted_at' })
+  @DeleteDateColumn({ name: 'deleted_at', select: false })
   deletedAt: Date;
 }
 
