@@ -42,7 +42,7 @@ class FuncionarioService implements IFuncionarioService {
   public async deleteFuncionario(id: string): Promise<void> {
     return await this._funcionarioRepository.delete(id);
   }
-  async findOne(email: string): Promise<Funcionario | null> {
+  public async findOne(email: string): Promise<Funcionario | null> {
     return await this._funcionarioRepository.findOne(email);
   }
 }
