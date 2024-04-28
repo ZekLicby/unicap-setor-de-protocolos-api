@@ -8,9 +8,11 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import RegistroSecundarioDto from 'src/application/dtos/registroSecundario.dto';
 import RegistroSecundarioService from 'src/application/services/registroSecundario.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { RegistroSecundario } from 'src/domain/entities/registroSecundario.entity';
 
 @Controller('registroSecundario')
@@ -18,7 +20,7 @@ export class RegistroSecundarioController {
   constructor(
     private readonly _registroSecundarioService: RegistroSecundarioService,
   ) {}
-
+  @UseGuards(JwtAuthGuard)
   @Post()
   public async createRegistroSecundario(
     @Body() fichaPrimariaData: RegistroSecundarioDto,
@@ -37,7 +39,7 @@ export class RegistroSecundarioController {
       );
     }
   }
-
+  @UseGuards(JwtAuthGuard)
   @Get()
   public async getAllRegistrosSecundarios(): Promise<RegistroSecundario[]> {
     try {
@@ -52,7 +54,7 @@ export class RegistroSecundarioController {
       );
     }
   }
-
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   public async getRegistroById(
     @Param('id') id: string,
@@ -66,7 +68,7 @@ export class RegistroSecundarioController {
 
     return registro;
   }
-
+  @UseGuards(JwtAuthGuard)
   @Put(':id')
   public async updateRegistroSecundario(
     @Param('id') id: string,
@@ -87,7 +89,7 @@ export class RegistroSecundarioController {
       );
     }
   }
-
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   public async deleteRegistroSecundario(
     @Param('id') id: string,

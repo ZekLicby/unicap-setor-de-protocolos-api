@@ -9,6 +9,7 @@ interface IFuncionarioRepository {
     funcionarioData: Funcionario,
   ): Promise<Funcionario> | undefined;
   delete(id: string): Promise<void>;
+  findOne(email: string): Promise<Funcionario | null>;
 }
 
 export default IFuncionarioRepository;

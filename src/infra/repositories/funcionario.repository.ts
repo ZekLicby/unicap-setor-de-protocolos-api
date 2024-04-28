@@ -8,7 +8,7 @@ import { Repository } from 'typeorm';
 class FuncionarioRepository implements IFuncionarioRepository {
   constructor(
     @InjectRepository(Funcionario)
-    private readonly _funcionarioRepository: Repository<Funcionario>,
+    private _funcionarioRepository: Repository<Funcionario>,
   ) {}
 
   public async create(funcionario: Funcionario): Promise<Funcionario> {
@@ -51,6 +51,12 @@ class FuncionarioRepository implements IFuncionarioRepository {
     if (deletedFuncionario.affected === 0) {
       throw new Error('Funcionário não encontrado.');
     }
+  }
+
+  async findOne(email: string): Promise<Funcionario | null> {
+    return await this._funcionarioRepository.findOne({
+      where: { email: email },
+    });
   }
 }
 

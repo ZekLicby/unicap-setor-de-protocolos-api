@@ -14,6 +14,8 @@ interface IFuncionarioService {
   ): Promise<Funcionario>;
 
   deleteFuncionario(id: string): Promise<void>;
+
+  findOne(email: string): Promise<Funcionario | null>;
 }
 
 export default IFuncionarioService;
