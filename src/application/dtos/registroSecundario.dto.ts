@@ -29,7 +29,7 @@ class RegistroSecundarioDto {
   @IsString()
   public orgao: string;
 
-  public registroPrimario: RegistroPrimario;
+  // public registroPrimario: RegistroPrimario;
 }
 
 export default RegistroSecundarioDto;

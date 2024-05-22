@@ -1,5 +1,6 @@
 import { IsDate, IsEmail, IsString } from 'class-validator';
 import RegistroPrimarioDto from './registroPrimario.dto';
+import RegistroSecundarioDto from './registroSecundario.dto';
 
 class FuncionarioDto {
   @IsString()
@@ -27,6 +28,8 @@ class FuncionarioDto {
   public senhaHash: string;
 
   public registroPrimario: RegistroPrimarioDto | null | undefined;
+
+  public registroSecundario: RegistroSecundarioDto | null | undefined;
 }
 
 export default FuncionarioDto;

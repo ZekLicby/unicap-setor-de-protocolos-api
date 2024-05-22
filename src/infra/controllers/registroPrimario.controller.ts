@@ -20,7 +20,8 @@ export class RegistroPrimarioController {
   constructor(
     private readonly _registroPrimarioService: RegistroPrimarioService,
   ) {}
-  @UseGuards(JwtAuthGuard)
+
+  // @UseGuards(JwtAuthGuard)
   @Post()
   public async createRegistroPrimario(
     @Body() fichaPrimariaData: RegistroPrimarioDto,
@@ -39,7 +40,8 @@ export class RegistroPrimarioController {
       );
     }
   }
-  @UseGuards(JwtAuthGuard)
+
+  // @UseGuards(JwtAuthGuard)
   @Get()
   public async getAllRegistrosPrimarios(): Promise<RegistroPrimario[]> {
     try {
@@ -54,6 +56,7 @@ export class RegistroPrimarioController {
       );
     }
   }
+
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   public async getRegistroById(
@@ -68,6 +71,7 @@ export class RegistroPrimarioController {
 
     return registro;
   }
+
   @UseGuards(JwtAuthGuard)
   @Put(':id')
   public async updateRegistroPrimario(
@@ -89,6 +93,7 @@ export class RegistroPrimarioController {
       );
     }
   }
+
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   public async deleteRegistroPrimario(@Param('id') id: string): Promise<void> {

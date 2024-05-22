@@ -38,6 +38,7 @@ export class TokenRepository implements ITokenRepository {
       });
     }
   }
+
   async update(id: string, hash: string): Promise<void> {
     await this.tokenRepository.update(id, { hash: hash });
   }
@@ -71,11 +72,13 @@ export class TokenRepository implements ITokenRepository {
       return null;
     }
   }
+
   async findOneByHash(hash: string): Promise<Token | null> {
     return await this.tokenRepository.findOne({
       where: { hash: hash },
     });
   }
+
   async findOneByUsername(username: string): Promise<Token | null> {
     return await this.tokenRepository.findOne({
       where: { username: username },

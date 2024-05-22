@@ -20,26 +20,30 @@ export class RegistroSecundarioController {
   constructor(
     private readonly _registroSecundarioService: RegistroSecundarioService,
   ) {}
-  @UseGuards(JwtAuthGuard)
+
+  // @UseGuards(JwtAuthGuard)
   @Post()
   public async createRegistroSecundario(
-    @Body() fichaPrimariaData: RegistroSecundarioDto,
+    @Body() fichaSecundariaData: RegistroSecundarioDto,
   ): Promise<RegistroSecundario> {
+    console.log('ficha', fichaSecundariaData);
+
     try {
-      const createdFichaPrimaria =
+      const createdFichaSecundaria =
         await this._registroSecundarioService.createRegistroSecundario(
-          fichaPrimariaData,
+          fichaSecundariaData,
         );
 
-      return createdFichaPrimaria;
+      return createdFichaSecundaria;
     } catch (error) {
       throw new HttpException(
-        'Erro ao tentar criar ficha primaria',
+        'Erro ao tentar criar ficha secundária',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
   }
-  @UseGuards(JwtAuthGuard)
+
+  // @UseGuards(JwtAuthGuard)
   @Get()
   public async getAllRegistrosSecundarios(): Promise<RegistroSecundario[]> {
     try {
@@ -54,6 +58,7 @@ export class RegistroSecundarioController {
       );
     }
   }
+
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   public async getRegistroById(
@@ -68,6 +73,7 @@ export class RegistroSecundarioController {
 
     return registro;
   }
+
   @UseGuards(JwtAuthGuard)
   @Put(':id')
   public async updateRegistroSecundario(
@@ -89,6 +95,7 @@ export class RegistroSecundarioController {
       );
     }
   }
+
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   public async deleteRegistroSecundario(

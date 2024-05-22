@@ -6,7 +6,6 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   OneToMany,
-  JoinColumn,
 } from 'typeorm';
 import { RegistroPrimario } from './registroPrimario.entity';
 import { RegistroSecundario } from './registroSecundario.entity';
@@ -53,8 +52,9 @@ class Funcionario {
   @OneToMany(
     () => RegistroSecundario,
     (registroSecundario) => registroSecundario.funcionario,
+    { cascade: true, onDelete: 'CASCADE' },
   )
-  public registroSecundario: RegistroSecundario[];
+  public registroSecundario: RegistroSecundario[] | null | undefined;
 
   @CreateDateColumn({ name: 'created_at', select: false })
   createdAt: Date;

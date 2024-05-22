@@ -7,6 +7,7 @@ import Funcionario from 'src/domain/entities/funcionario.entity';
 import { FuncionarioController } from '../controllers/funcionario.controller';
 import RegistroPrimarioMapper from 'src/application/mappers/registroPrimario.mapper';
 import { AuthModule } from 'src/auth/auth.module';
+import RegistroSecundarioMapper from 'src/application/mappers/registroSecundario.mapper';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { AuthModule } from 'src/auth/auth.module';
     FuncionarioMapper,
     FuncionarioService,
     RegistroPrimarioMapper,
+    RegistroSecundarioMapper,
   ],
   exports: [FuncionarioService],
 })

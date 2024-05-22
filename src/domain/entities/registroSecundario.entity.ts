@@ -3,15 +3,16 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import Funcionario from './funcionario.entity';
 
 @Entity({ name: 'FichasSecundarias' })
 export class RegistroSecundario {
-  @PrimaryColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   public id: string;
 
   @Column({ type: 'text', nullable: false })
@@ -41,8 +42,11 @@ export class RegistroSecundario {
   @ManyToOne(
     () => Funcionario,
     (funcionario) => funcionario.registroSecundario,
-    { onDelete: 'SET NULL' },
+    {
+      onDelete: 'SET NULL',
+    },
   )
+  @JoinColumn()
   public funcionario: Funcionario;
 
   @CreateDateColumn({ name: 'created_at' })

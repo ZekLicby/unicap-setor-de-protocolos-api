@@ -42,7 +42,8 @@ export class FuncionarioController {
       );
     }
   }
-  @UseGuards(JwtAuthGuard)
+
+  // @UseGuards(JwtAuthGuard)
   @Get()
   public async getAllFuncionarios(): Promise<Funcionario[]> {
     try {
@@ -56,6 +57,7 @@ export class FuncionarioController {
       );
     }
   }
+
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   public async getFuncionarioById(
@@ -72,6 +74,7 @@ export class FuncionarioController {
 
     return funcionario;
   }
+
   @UseGuards(JwtAuthGuard)
   @Put(':id')
   public async updateFuncionario(
@@ -90,6 +93,7 @@ export class FuncionarioController {
       );
     }
   }
+
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   public async deleteFuncionario(@Param('id') id: string): Promise<void> {
