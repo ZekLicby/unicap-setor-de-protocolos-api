@@ -21,7 +21,7 @@ export class RegistroPrimarioController {
     private readonly _registroPrimarioService: RegistroPrimarioService,
   ) {}
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post()
   public async createRegistroPrimario(
     @Body() fichaPrimariaData: RegistroPrimarioDto,
@@ -41,7 +41,7 @@ export class RegistroPrimarioController {
     }
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   public async getAllRegistrosPrimarios(): Promise<RegistroPrimario[]> {
     try {

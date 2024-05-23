@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { RegistroPrimario } from './registroPrimario.entity';
 import { RegistroSecundario } from './registroSecundario.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'Funcionarios' })
 class Funcionario {
@@ -33,7 +34,8 @@ class Funcionario {
   @Column({ type: 'text', nullable: false })
   public matricula: string;
 
-  @Column({ type: 'text', nullable: false, select: false })
+  @Exclude()
+  @Column({ type: 'text', nullable: false })
   private senhaHash: string;
   public get getSenhaHash(): string {
     return this.senhaHash;

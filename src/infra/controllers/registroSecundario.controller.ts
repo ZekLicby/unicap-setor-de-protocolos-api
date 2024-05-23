@@ -21,7 +21,7 @@ export class RegistroSecundarioController {
     private readonly _registroSecundarioService: RegistroSecundarioService,
   ) {}
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post()
   public async createRegistroSecundario(
     @Body() fichaSecundariaData: RegistroSecundarioDto,
@@ -43,7 +43,7 @@ export class RegistroSecundarioController {
     }
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   public async getAllRegistrosSecundarios(): Promise<RegistroSecundario[]> {
     try {

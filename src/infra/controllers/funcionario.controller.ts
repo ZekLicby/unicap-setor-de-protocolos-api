@@ -12,6 +12,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { plainToInstance } from 'class-transformer';
 import { Request } from 'express';
 import FuncionarioDto from 'src/application/dtos/funcionario.dto';
 import FuncionarioService from 'src/application/services/funcionario.service';
@@ -34,7 +35,7 @@ export class FuncionarioController {
       const createdFuncionario =
         await this.funcionarioService.createFuncionario(funcionarioData);
 
-      return createdFuncionario;
+      return plainToInstance(Funcionario, createdFuncionario);
     } catch (error) {
       throw new HttpException(
         'Erro ao tentar criar funcionário',
@@ -43,13 +44,12 @@ export class FuncionarioController {
     }
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   public async getAllFuncionarios(): Promise<Funcionario[]> {
     try {
       const funcionarios = await this.funcionarioService.getAllFuncionarios();
-
-      return funcionarios;
+      return plainToInstance(Funcionario, funcionarios);
     } catch (error) {
       throw new HttpException(
         'Erro ao tentar listar todos funcionários',
@@ -72,7 +72,7 @@ export class FuncionarioController {
       );
     }
 
-    return funcionario;
+    return plainToInstance(Funcionario, funcionario);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -85,7 +85,7 @@ export class FuncionarioController {
       const updatedFuncionario =
         await this.funcionarioService.updateFuncionario(id, funcionarioData);
 
-      return updatedFuncionario;
+      return plainToInstance(Funcionario, updatedFuncionario);
     } catch (error) {
       throw new HttpException(
         'Informações do usuário não puderam ser atualizadas',
