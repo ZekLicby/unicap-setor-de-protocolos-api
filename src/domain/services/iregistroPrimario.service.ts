@@ -4,6 +4,7 @@ import { RegistroPrimario } from '../entities/registroPrimario.entity';
 interface IRegistroPrimarioService {
   createRegistroPrimario(
     registroPrimarioDto: RegistroPrimarioDto,
+    userId: string,
   ): Promise<RegistroPrimario>;
 
   getAllRegistrosPrimarios(): Promise<RegistroPrimario[]>;

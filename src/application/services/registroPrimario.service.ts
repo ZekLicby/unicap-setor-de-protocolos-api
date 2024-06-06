@@ -1,22 +1,34 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import RegistroPrimarioDto from '../dtos/registroPrimario.dto';
 import RegistroPrimarioRepository from 'src/infra/repositories/registroPrimario.repository';
 import RegistroPrimarioMapper from '../mappers/registroPrimario.mapper';
-import IRegistroPrimarioService from 'src/domain/services/iregristroPrimario.service';
+import IRegistroPrimarioService from 'src/domain/services/iregistroPrimario.service';
 import { RegistroPrimario } from 'src/domain/entities/registroPrimario.entity';
+import FuncionarioRepository from 'src/infra/repositories/funcionario.repository';
+import Funcionario from 'src/domain/entities/funcionario.entity';
 
 @Injectable()
 class RegistroPrimarioService implements IRegistroPrimarioService {
   constructor(
     private readonly _registroPrimarioRepository: RegistroPrimarioRepository,
     private readonly _registroPrimarioMapper: RegistroPrimarioMapper,
+    private readonly _funcionarioRepository: FuncionarioRepository,
   ) {}
 
   public async createRegistroPrimario(
     registroPrimarioDto: RegistroPrimarioDto,
+    userId: string,
   ): Promise<RegistroPrimario> {
+    const funcionario: Funcionario | null =
+      await this._funcionarioRepository.getById(userId);
+
+    if (!funcionario) {
+      throw new NotFoundException('Funcionário não encontrado');
+    }
+
     const registroPrimario =
       this._registroPrimarioMapper.dtoToEntity(registroPrimarioDto);
+    registroPrimario.funcionario = funcionario; // Associar o funcionário ao registro primario
 
     return await this._registroPrimarioRepository.create(registroPrimario);
   }
@@ -37,7 +49,6 @@ class RegistroPrimarioService implements IRegistroPrimarioService {
   ): Promise<RegistroPrimario> {
     const registro =
       this._registroPrimarioMapper.dtoToEntity(registroPrimarioDto);
-
     return await this._registroPrimarioRepository.update(id, registro);
   }
 

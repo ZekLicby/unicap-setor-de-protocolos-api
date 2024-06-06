@@ -9,6 +9,7 @@ import {
   Post,
   Put,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import RegistroPrimarioDto from 'src/application/dtos/registroPrimario.dto';
 import RegistroPrimarioService from 'src/application/services/registroPrimario.service';
@@ -25,11 +26,21 @@ export class RegistroPrimarioController {
   @Post()
   public async createRegistroPrimario(
     @Body() fichaPrimariaData: RegistroPrimarioDto,
+    @Req() req: any,
   ): Promise<RegistroPrimario> {
     try {
+      if (!req.user || !req.user.userId) {
+        throw new HttpException(
+          'Usuário não autenticado',
+          HttpStatus.UNAUTHORIZED,
+        );
+      }
+
+      const userId = req.user.userId; // Extraia o ID do usuário do token
       const createdFichaPrimaria =
         await this._registroPrimarioService.createRegistroPrimario(
           fichaPrimariaData,
+          userId,
         );
 
       return createdFichaPrimaria;
@@ -47,7 +58,6 @@ export class RegistroPrimarioController {
     try {
       const registros =
         await this._registroPrimarioService.getAllRegistrosPrimarios();
-
       return registros;
     } catch (error) {
       throw new HttpException(
@@ -98,8 +108,7 @@ export class RegistroPrimarioController {
   @Delete(':id')
   public async deleteRegistroPrimario(@Param('id') id: string): Promise<void> {
     try {
-      const deletedRegistro =
-        await this._registroPrimarioService.deleteRegistroPrimario(id);
+      await this._registroPrimarioService.deleteRegistroPrimario(id);
     } catch (error) {
       throw new HttpException(
         'Registro não pôde ser deletado',

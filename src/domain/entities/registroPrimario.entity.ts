@@ -48,4 +48,3 @@ export class RegistroPrimario {
   @DeleteDateColumn({ name: 'deleted_at', select: false })
   deletedAt: Date;
 }
-  
