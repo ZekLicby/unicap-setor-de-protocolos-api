@@ -10,27 +10,27 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import RegistroSecundarioDto from 'src/application/dtos/registroSecundario.dto';
-import RegistroSecundarioService from 'src/application/services/registroSecundario.service';
+import ExternalRegisterDto from 'src/application/dtos/externalRegister';
+import ExternalRegisterService from 'src/application/services/externalRegister.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { RegistroSecundario } from 'src/domain/entities/registroSecundario.entity';
+import { ExternalRegister } from 'src/domain/entities/externalRegister.entity';
 
-@Controller('registroSecundario')
-export class RegistroSecundarioController {
+@Controller('externalRegister')
+export class ExternalRegisterController {
   constructor(
-    private readonly _registroSecundarioService: RegistroSecundarioService,
+    private readonly _externalRegisterService: ExternalRegisterService,
   ) {}
 
   @UseGuards(JwtAuthGuard)
   @Post()
   public async createRegistroSecundario(
-    @Body() fichaSecundariaData: RegistroSecundarioDto,
-  ): Promise<RegistroSecundario> {
+    @Body() fichaSecundariaData: ExternalRegisterDto,
+  ): Promise<ExternalRegister> {
     console.log('ficha', fichaSecundariaData);
 
     try {
       const createdFichaSecundaria =
-        await this._registroSecundarioService.createRegistroSecundario(
+        await this._externalRegisterService.createRegistroSecundario(
           fichaSecundariaData,
         );
 
@@ -45,10 +45,10 @@ export class RegistroSecundarioController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  public async getAllRegistrosSecundarios(): Promise<RegistroSecundario[]> {
+  public async getAllRegistrosSecundarios(): Promise<ExternalRegister[]> {
     try {
       const registros =
-        await this._registroSecundarioService.getAllRegistrosSecundarios();
+        await this._externalRegisterService.getAllRegistrosSecundarios();
 
       return registros;
     } catch (error) {
@@ -63,9 +63,9 @@ export class RegistroSecundarioController {
   @Get(':id')
   public async getRegistroById(
     @Param('id') id: string,
-  ): Promise<RegistroSecundario> {
+  ): Promise<ExternalRegister> {
     const registro =
-      await this._registroSecundarioService.getRegistroSecundarioById(id);
+      await this._externalRegisterService.getRegistroSecundarioById(id);
 
     if (!registro) {
       throw new HttpException('Registro não encontrado', HttpStatus.NOT_FOUND);
@@ -78,11 +78,11 @@ export class RegistroSecundarioController {
   @Put(':id')
   public async updateRegistroSecundario(
     @Param('id') id: string,
-    @Body() registroSecundarioData: RegistroSecundarioDto,
-  ): Promise<RegistroSecundario> {
+    @Body() registroSecundarioData: ExternalRegisterDto,
+  ): Promise<ExternalRegister> {
     try {
       const updatedRegistro =
-        await this._registroSecundarioService.updateRegistroSecundario(
+        await this._externalRegisterService.updateRegistroSecundario(
           id,
           registroSecundarioData,
         );
@@ -103,7 +103,7 @@ export class RegistroSecundarioController {
   ): Promise<void> {
     try {
       const deletedRegistro =
-        await this._registroSecundarioService.deleteRegistroSecundario(id);
+        await this._externalRegisterService.deleteRegistroSecundario(id);
     } catch (error) {
       throw new HttpException(
         'Registro não pôde ser deletado',

@@ -8,10 +8,10 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import Funcionario from './funcionario.entity';
+import Employee from './employee.entity';
 
-@Entity({ name: 'FichasPrimarias' })
-export class RegistroPrimario {
+@Entity({ name: 'Registro Interno' })
+export class InternalRegister {
   @PrimaryGeneratedColumn('increment')
   public id: string;
 
@@ -19,25 +19,25 @@ export class RegistroPrimario {
   public RA: string;
 
   @Column({ type: 'text', nullable: false })
-  public curso: string;
+  public course: string;
 
   @Column({ type: 'date', nullable: false })
-  public encaminhado: Date;
+  public forwardedDate: Date;
 
   @Column({ type: 'text', nullable: false })
-  public fone: string;
+  public phone: string;
 
   @Column({ type: 'text', nullable: false })
-  public orgao: string;
+  public organ: string;
 
   @Column({ type: 'text', nullable: false })
-  public notas: string;
+  public notes: string;
 
-  @ManyToOne(() => Funcionario, (funcionario) => funcionario.registroPrimario, {
+  @ManyToOne(() => Employee, (employee) => employee.internalRegister, {
     onDelete: 'SET NULL',
   })
   @JoinColumn()
-  public funcionario: Funcionario;
+  public employee: Employee;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
@@ -48,4 +48,3 @@ export class RegistroPrimario {
   @DeleteDateColumn({ name: 'deleted_at', select: false })
   deletedAt: Date;
 }
-  

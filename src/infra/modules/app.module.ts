@@ -1,20 +1,20 @@
 import * as dotenv from 'dotenv';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import Funcionario from '../../domain/entities/funcionario.entity';
+import Funcionario from '../../domain/entities/employee.entity';
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from 'src/database/database.module';
-import { RegistroPrimarioModule } from './registroPrimario.module';
-import { RegistroSecundarioModule } from './registroSecundario.module';
-import { RegistroPrimario } from 'src/domain/entities/registroPrimario.entity';
-import { RegistroSecundario } from 'src/domain/entities/registroSecundario.entity';
+import { DatabaseModule } from 'src/infra/database/database.module';
+import { InternalRegisterModule } from './internalRegister.module';
+import { ExternalRegisterModule } from './externalRegister.module';
+import { InternalRegister } from 'src/domain/entities/internalRegister.entity';
+import { ExternalRegister } from 'src/domain/entities/externalRegister.entity';
 import { AuthModule } from 'src/auth/auth.module';
 dotenv.config();
 
 @Module({
   imports: [
     DatabaseModule,
-    RegistroPrimarioModule,
-    RegistroSecundarioModule,
+    InternalRegisterModule,
+    ExternalRegisterModule,
     AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -22,7 +22,7 @@ dotenv.config();
       synchronize: true,
       logging: true,
       autoLoadEntities: true,
-      entities: [Funcionario, RegistroPrimario, RegistroSecundario],
+      entities: [Funcionario, InternalRegister, ExternalRegister],
       migrations: ['src/migration/**/*.ts'],
       subscribers: ['src/subscriber/**/*.ts'],
     }),

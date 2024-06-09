@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { TokenRepository } from './token.repository';
-import Funcionario from 'src/domain/entities/funcionario.entity';
+import Funcionario from 'src/domain/entities/employee.entity';
 
 @Injectable()
 export class TokenService {

@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import Funcionario from 'src/domain/entities/funcionario.entity';
-import { RegistroPrimario } from 'src/domain/entities/registroPrimario.entity';
-import { RegistroSecundario } from 'src/domain/entities/registroSecundario.entity';
+import Funcionario from 'src/domain/entities/employee.entity';
+import { InternalRegister } from 'src/domain/entities/internalRegister.entity';
+import { ExternalRegister } from 'src/domain/entities/externalRegister.entity';
 import { Token } from 'src/token/token.entity';
 
 @Module({
@@ -15,7 +15,7 @@ import { Token } from 'src/token/token.entity';
       useFactory: async (configService: ConfigService) => ({
         type: 'postgres',
         url: configService.get('DATABASE_URL'),
-        entities: [Funcionario, RegistroPrimario, RegistroSecundario, Token],
+        entities: [Funcionario, InternalRegister, ExternalRegister, Token],
         synchronize: true,
       }),
     }),

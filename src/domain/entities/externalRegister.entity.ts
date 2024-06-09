@@ -8,46 +8,42 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import Funcionario from './funcionario.entity';
+import Employee from './employee.entity';
 
-@Entity({ name: 'FichasSecundarias' })
-export class RegistroSecundario {
+@Entity({ name: 'Register Externo' })
+export class ExternalRegister {
   @PrimaryGeneratedColumn('increment')
   public id: string;
 
   @Column({ type: 'text', nullable: false })
-  public tipoDoc: string;
+  public documentType: string;
 
   @Column({ type: 'text', nullable: false })
-  public notas: string;
+  public notes: string;
 
   @Column({ type: 'text', nullable: false })
-  public assuntos: string;
+  public subject: string;
 
   @Column({ type: 'text', nullable: false })
-  public registroPor: string;
+  public registeredBy: string;
 
   @Column({ type: 'text', nullable: false })
   public RA: string;
 
   @Column({ type: 'text', nullable: false })
-  public curso: string;
+  public course: string;
 
   @Column({ type: 'date' })
-  public encaminhado: Date;
+  public forwardedDate: Date;
 
   @Column({ type: 'text' })
-  public orgao: string;
+  public organ: string;
 
-  @ManyToOne(
-    () => Funcionario,
-    (funcionario) => funcionario.registroSecundario,
-    {
-      onDelete: 'SET NULL',
-    },
-  )
+  @ManyToOne(() => Employee, (employee) => employee.externalRegister, {
+    onDelete: 'SET NULL',
+  })
   @JoinColumn()
-  public funcionario: Funcionario;
+  public employee: Employee;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

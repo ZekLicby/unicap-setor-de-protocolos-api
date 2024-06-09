@@ -1,6 +1,6 @@
 import { IsDate, IsString } from 'class-validator';
 
-class RegistroPrimarioDto {
+class InternalRegisterDto {
   @IsString()
   public id?: string;
 
@@ -8,19 +8,19 @@ class RegistroPrimarioDto {
   public RA: string;
 
   @IsString()
-  public curso: string;
+  public course: string;
 
   @IsDate()
-  public encaminhado: Date;
+  public forwardedDate: Date;
 
   @IsString()
-  public fone: string;
+  public phone: string;
 
   @IsString()
-  public orgao: string;
+  public organ: string;
 
   @IsString()
-  public notas: string;
+  public notes: string;
 }
 
-export default RegistroPrimarioDto;
+export default InternalRegisterDto;

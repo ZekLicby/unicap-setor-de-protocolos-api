@@ -9,27 +9,35 @@ import {
   Post,
   Put,
   UseGuards,
+  Headers,
 } from '@nestjs/common';
-import RegistroPrimarioDto from 'src/application/dtos/registroPrimario.dto';
-import RegistroPrimarioService from 'src/application/services/registroPrimario.service';
+import InternalRegisterDto from 'src/application/dtos/internalRegister';
+import InternalRegisterService from 'src/application/services/internalRegister.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { RegistroPrimario } from 'src/domain/entities/registroPrimario.entity';
+import { InternalRegister } from 'src/domain/entities/internalRegister.entity';
+import { JWTUtil } from '../utils/jwt.util';
 
-@Controller('registroPrimario')
-export class RegistroPrimarioController {
+@Controller('internalRegister')
+export class InternalRegisterController {
   constructor(
-    private readonly _registroPrimarioService: RegistroPrimarioService,
+    private readonly _internalRegisterService: InternalRegisterService,
+   // private readonly _jwtUtil: JWTUtil,
   ) {}
 
   @UseGuards(JwtAuthGuard)
   @Post()
   public async createRegistroPrimario(
-    @Body() fichaPrimariaData: RegistroPrimarioDto,
-  ): Promise<RegistroPrimario> {
+    @Body() fichaPrimariaData: InternalRegisterDto,
+    @Headers('Authorization') auth: string,
+  ): Promise<InternalRegister> {
     try {
+      //const json = this._jwtUtil.decode(auth);
+      //const userId = json.uuid;
+      const userId = "teste";
       const createdFichaPrimaria =
-        await this._registroPrimarioService.createRegistroPrimario(
+        await this._internalRegisterService.createRegistroPrimario(
           fichaPrimariaData,
+          userId,
         );
 
       return createdFichaPrimaria;
@@ -43,10 +51,10 @@ export class RegistroPrimarioController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  public async getAllRegistrosPrimarios(): Promise<RegistroPrimario[]> {
+  public async getAllRegistrosPrimarios(): Promise<InternalRegister[]> {
     try {
       const registros =
-        await this._registroPrimarioService.getAllRegistrosPrimarios();
+        await this._internalRegisterService.getAllRegistrosPrimarios();
 
       return registros;
     } catch (error) {
@@ -61,9 +69,9 @@ export class RegistroPrimarioController {
   @Get(':id')
   public async getRegistroById(
     @Param('id') id: string,
-  ): Promise<RegistroPrimario> {
+  ): Promise<InternalRegister> {
     const registro =
-      await this._registroPrimarioService.getRegistroPrimarioById(id);
+      await this._internalRegisterService.getRegistroPrimarioById(id);
 
     if (!registro) {
       throw new HttpException('Registro não encontrado', HttpStatus.NOT_FOUND);
@@ -76,11 +84,11 @@ export class RegistroPrimarioController {
   @Put(':id')
   public async updateRegistroPrimario(
     @Param('id') id: string,
-    @Body() registroPrimarioData: RegistroPrimarioDto,
-  ): Promise<RegistroPrimario> {
+    @Body() registroPrimarioData: InternalRegisterDto,
+  ): Promise<InternalRegister> {
     try {
       const updatedRegistro =
-        await this._registroPrimarioService.updateRegistroPrimario(
+        await this._internalRegisterService.updateRegistroPrimario(
           id,
           registroPrimarioData,
         );
@@ -99,7 +107,7 @@ export class RegistroPrimarioController {
   public async deleteRegistroPrimario(@Param('id') id: string): Promise<void> {
     try {
       const deletedRegistro =
-        await this._registroPrimarioService.deleteRegistroPrimario(id);
+        await this._internalRegisterService.deleteRegistroPrimario(id);
     } catch (error) {
       throw new HttpException(
         'Registro não pôde ser deletado',

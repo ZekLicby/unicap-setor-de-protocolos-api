@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { FuncionarioModule } from 'src/infra/modules/funcionario.module';
+import { EmployeeModule } from 'src/infra/modules/employee.module';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './local.strategy';
 import { JwtModule } from '@nestjs/jwt';
@@ -10,7 +10,7 @@ import { TokenModule } from 'src/token/token.module';
 
 @Module({
   imports: [
-    FuncionarioModule,
+    EmployeeModule,
     PassportModule,
     TokenModule,
     JwtModule.register({

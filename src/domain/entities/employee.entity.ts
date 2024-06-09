@@ -7,56 +7,56 @@ import {
   DeleteDateColumn,
   OneToMany,
 } from 'typeorm';
-import { RegistroPrimario } from './registroPrimario.entity';
-import { RegistroSecundario } from './registroSecundario.entity';
+import { InternalRegister } from './internalRegister.entity';
+import { ExternalRegister } from './externalRegister.entity';
 import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'Funcionarios' })
-class Funcionario {
+class Employee {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
   @Column({ type: 'text', nullable: false })
-  public nome: string;
+  public name: string;
 
   @Column({ type: 'text', nullable: false })
-  public cargo: string;
+  public role: string;
 
   @Column({ type: 'text', nullable: false })
   public email: string;
 
   @Column({ type: 'text', nullable: false })
-  public setor: string;
+  public departament: string;
 
   @Column({ type: 'date', nullable: false })
-  public dataNascimento: Date;
+  public birthdate: Date;
 
   @Column({ type: 'text', nullable: false })
-  public matricula: string;
+  public registrarionNumber: string;
 
   @Exclude()
   @Column({ type: 'text', nullable: false })
-  private senhaHash: string;
-  public get getSenhaHash(): string {
-    return this.senhaHash;
+  private passwordHash: string;
+  public get getPasswordHash(): string {
+    return this.passwordHash;
   }
-  public set setSenhaHash(value: string) {
-    this.senhaHash = value;
+  public set setPasswordHash(value: string) {
+    this.passwordHash = value;
   }
 
   @OneToMany(
-    () => RegistroPrimario,
-    (registroPrimario) => registroPrimario.funcionario,
+    () => InternalRegister,
+    (internalRegister) => internalRegister.employee,
     { cascade: true, onDelete: 'CASCADE' },
   )
-  public registroPrimario: RegistroPrimario[] | null | undefined;
+  public internalRegister: InternalRegister[] | null | undefined;
 
   @OneToMany(
-    () => RegistroSecundario,
-    (registroSecundario) => registroSecundario.funcionario,
+    () => ExternalRegister,
+    (externalRegister) => externalRegister.employee,
     { cascade: true, onDelete: 'CASCADE' },
   )
-  public registroSecundario: RegistroSecundario[] | null | undefined;
+  public externalRegister: ExternalRegister[] | null | undefined;
 
   @CreateDateColumn({ name: 'created_at', select: false })
   createdAt: Date;
@@ -68,4 +68,4 @@ class Funcionario {
   deletedAt: Date;
 }
 
-export default Funcionario;
+export default Employee;

@@ -8,8 +8,8 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Token } from './token.entity';
-import Funcionario from 'src/domain/entities/funcionario.entity';
-import FuncionarioService from 'src/application/services/funcionario.service';
+import Employee from 'src/domain/entities/employee.entity';
+import EmployeeService from 'src/application/services/employee.service';
 import { AuthService } from 'src/auth/auth.service';
 import ITokenRepository from './itoken.repository';
 
@@ -18,7 +18,7 @@ export class TokenRepository implements ITokenRepository {
   constructor(
     @InjectRepository(Token)
     private readonly tokenRepository: Repository<Token>,
-    private readonly _funcionarioService: FuncionarioService,
+    private readonly _employeeService: EmployeeService,
     @Inject(forwardRef(() => AuthService))
     private readonly authService: AuthService,
   ) {}
@@ -48,7 +48,7 @@ export class TokenRepository implements ITokenRepository {
       where: { hash: oldToken },
     });
     if (objToken) {
-      const usuario = await this._funcionarioService.findOne(objToken.username);
+      const usuario = await this._employeeService.findOne(objToken.username);
       return this.authService.login(usuario);
     } else {
       return new HttpException(
@@ -60,13 +60,13 @@ export class TokenRepository implements ITokenRepository {
     }
   }
 
-  async getUsuarioByToken(token: string): Promise<Funcionario | null> {
+  async getUsuarioByToken(token: string): Promise<Employee | null> {
     token = token.replace('Bearer ', '').trim();
     const objToken: Token | null = await this.tokenRepository.findOne({
       where: { hash: token },
     });
     if (objToken) {
-      const usuario = await this._funcionarioService.findOne(objToken.username);
+      const usuario = await this._employeeService.findOne(objToken.username);
       return usuario;
     } else {
       return null;

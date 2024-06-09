@@ -1,7 +1,7 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { AuthModule } from 'src/auth/auth.module';
-import { FuncionarioModule } from 'src/infra/modules/funcionario.module';
-import { DatabaseModule } from '../database/database.module';
+import { EmployeeModule } from 'src/infra/modules/employee.module';
+import { DatabaseModule } from '../infra/database/database.module';
 import { TokenController } from './token.controller';
 import { TokenService } from './token.service';
 import { TokenRepository } from './token.repository';
@@ -13,7 +13,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TypeOrmModule.forFeature([Token]),
     DatabaseModule,
     forwardRef(() => AuthModule),
-    FuncionarioModule,
+    EmployeeModule,
   ],
   controllers: [TokenController],
   providers: [TokenRepository, TokenService],
