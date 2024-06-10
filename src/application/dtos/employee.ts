@@ -22,7 +22,7 @@ class EmployeeDto {
   public birthdate: Date;
 
   @IsString()
-  public registrarionNumber: string;
+  public registrationNumber: string;
 
   @IsString()
   public passwordHash: string;
