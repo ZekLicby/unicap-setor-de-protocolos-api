@@ -8,7 +8,13 @@ class ExternalRegisterDto {
   public documentType: string;
 
   @IsString()
-  public notes: string;
+  public ciNumber: string;
+
+  @IsString()
+  public RA: string;
+
+  @IsString()
+  public course: string;
 
   @IsString()
   public subject: string;
@@ -17,16 +23,16 @@ class ExternalRegisterDto {
   public registeredBy: string;
 
   @IsString()
-  public RA: string;
+  public observations: string;
 
   @IsString()
-  public course: string;
+  public organ: string;
 
   @IsDate()
   public forwardedDate: Date;
 
   @IsString()
-  public organ: string;
+  public notes: string;
 }
 
 export default ExternalRegisterDto;

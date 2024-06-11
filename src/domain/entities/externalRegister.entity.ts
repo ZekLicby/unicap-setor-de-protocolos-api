@@ -19,7 +19,13 @@ export class ExternalRegister {
   public documentType: string;
 
   @Column({ type: 'text', nullable: false })
-  public notes: string;
+  public ciNumber: string;
+
+  @Column({ type: 'text', nullable: false })
+  public RA: string;
+
+  @Column({ type: 'text', nullable: false })
+  public course: string;
 
   @Column({ type: 'text', nullable: false })
   public subject: string;
@@ -28,16 +34,16 @@ export class ExternalRegister {
   public registeredBy: string;
 
   @Column({ type: 'text', nullable: false })
-  public RA: string;
+  public observations: string;
 
-  @Column({ type: 'text', nullable: false })
-  public course: string;
+  @Column({ type: 'text' })
+  public organ: string;
 
   @Column({ type: 'date' })
   public forwardedDate: Date;
 
-  @Column({ type: 'text' })
-  public organ: string;
+  @Column({ type: 'text', nullable: false })
+  public notes: string;
 
   @ManyToOne(() => Employee, (employee) => employee.externalRegister, {
     onDelete: 'SET NULL',

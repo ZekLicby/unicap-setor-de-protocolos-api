@@ -21,14 +21,20 @@ export class InternalRegister {
   @Column({ type: 'text', nullable: false })
   public course: string;
 
-  @Column({ type: 'date', nullable: false })
-  public forwardedDate: Date;
-
   @Column({ type: 'text', nullable: false })
   public phone: string;
 
   @Column({ type: 'text', nullable: false })
+  public subject: string;
+
+  @Column({ type: 'text', nullable: false })
+  public finalSummary: string;
+
+  @Column({ type: 'text', nullable: false })
   public organ: string;
+
+  @Column({ type: 'date', nullable: false })
+  public forwardedDate: Date;
 
   @Column({ type: 'text', nullable: false })
   public notes: string;

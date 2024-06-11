@@ -32,7 +32,7 @@ class Employee {
   public birthdate: Date;
 
   @Column({ type: 'text', nullable: false })
-  public registrarionNumber: string;
+  public registrationNumber: string;
 
   @Exclude()
   @Column({ type: 'text', nullable: false })

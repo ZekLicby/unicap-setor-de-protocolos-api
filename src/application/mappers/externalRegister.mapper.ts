@@ -10,30 +10,34 @@ class ExternalRegisterMapper
   entityToDto(entity: ExternalRegister): ExternalRegisterDto {
     const dto = new ExternalRegisterDto();
 
+    dto.id = entity.id;
+    dto.documentType = entity.documentType;
+    dto.ciNumber = entity.ciNumber;
     dto.RA = entity.RA;
     dto.course = entity.course;
-    dto.forwardedDate = entity.forwardedDate;
-    dto.id = entity.id;
-    dto.notes = entity.notes;
-    dto.organ = entity.organ;
     dto.subject = entity.subject;
     dto.registeredBy = entity.registeredBy;
-    dto.documentType = entity.documentType;
+    dto.observations = entity.observations;
+    dto.organ = entity.organ;
+    dto.forwardedDate = entity.forwardedDate;
+    dto.notes = entity.notes;
 
     return dto;
   }
 
   dtoToEntity(dto: ExternalRegisterDto): ExternalRegister {
     const entity = new ExternalRegister();
-
+    
+    entity.documentType = dto.documentType;
+    entity.ciNumber = dto.ciNumber;
     entity.RA = dto.RA;
     entity.course = dto.course;
-    entity.forwardedDate = dto.forwardedDate;
-    entity.notes = dto.notes;
-    entity.organ = dto.organ;
     entity.subject = dto.subject;
     entity.registeredBy = dto.registeredBy;
-    entity.documentType = dto.documentType;
+    entity.observations = dto.observations;
+    entity.organ = dto.organ;
+    entity.forwardedDate = dto.forwardedDate;
+    entity.notes = dto.notes;
     entity.createdAt = new Date();
     entity.updatedAt = new Date();
 

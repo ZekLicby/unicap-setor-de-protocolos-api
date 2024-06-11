@@ -10,14 +10,20 @@ class InternalRegisterDto {
   @IsString()
   public course: string;
 
-  @IsDate()
-  public forwardedDate: Date;
-
   @IsString()
   public phone: string;
 
   @IsString()
+  public subject: string;
+
+  @IsString()
+  public finalSummary: string;
+
+  @IsString()
   public organ: string;
+
+  @IsDate()
+  public forwardedDate: Date;
 
   @IsString()
   public notes: string;

@@ -20,7 +20,7 @@ class EmployeeMapper implements IMapper<Employee, EmployeeDto> {
     dto.departament = entity.departament;
     dto.birthdate = entity.birthdate;
     dto.name = entity.name;
-    dto.registrarionNumber = entity.registrarionNumber;
+    dto.registrationNumber = entity.registrationNumber;
 
     dto.internalRegister = entity.internalRegister
       ? this._internalRegisterMapper.entityToDto(entity.internalRegister[0])
@@ -41,7 +41,7 @@ class EmployeeMapper implements IMapper<Employee, EmployeeDto> {
     entity.departament = dto.departament;
     entity.birthdate = dto.birthdate;
     entity.name = dto.name;
-    entity.registrarionNumber = dto.registrarionNumber;
+    entity.registrationNumber = dto.registrationNumber;
 
     entity.internalRegister = dto.internalRegister
       ? [this._internalRegisterMapper.dtoToEntity(dto.internalRegister)]

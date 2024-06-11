@@ -10,13 +10,15 @@ class InternalRegisterMapper
   entityToDto(entity: InternalRegister): InternalRegisterDto {
     const dto = new InternalRegisterDto();
 
+    dto.id = entity.id;
     dto.RA = entity.RA;
     dto.course = entity.course;
-    dto.forwardedDate = entity.forwardedDate;
     dto.phone = entity.phone;
-    dto.id = entity.id;
-    dto.notes = entity.notes;
+    dto.subject = entity.subject;
+    dto.finalSummary = entity.finalSummary;
     dto.organ = entity.organ;
+    dto.forwardedDate = entity.forwardedDate;
+    dto.notes = entity.notes;
 
     return dto;
   }
@@ -26,10 +28,12 @@ class InternalRegisterMapper
 
     entity.RA = dto.RA;
     entity.course = dto.course;
-    entity.forwardedDate = dto.forwardedDate;
     entity.phone = dto.phone;
-    entity.notes = dto.notes;
+    entity.subject = dto.subject;
+    entity.finalSummary = dto.finalSummary;
     entity.organ = dto.organ;
+    entity.forwardedDate = dto.forwardedDate;
+    entity.notes = dto.notes;
     entity.createdAt = new Date();
     entity.updatedAt = new Date();
 
